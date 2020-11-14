@@ -38,7 +38,21 @@ class BonusServiceTest {
         //подготавливаем данные
         long amount = 1000_60;
         boolean registred = false;
-        long expected = 30;
+        long expected = 10;
+
+        //вызываем целевой метод:
+        long actual = service.calculate(amount, registred);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldCalculateUnRegisteredOverLimit() {
+        BonusService service = new BonusService();
+        //подготавливаем данные
+        long amount = 1_000_000_60;
+        boolean registred = false;
+        long expected = 500;
 
         //вызываем целевой метод:
         long actual = service.calculate(amount, registred);
